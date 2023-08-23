@@ -124,6 +124,7 @@
             this.BtnApagar.Size = new System.Drawing.Size(180, 78);
             this.BtnApagar.TabIndex = 4;
             this.BtnApagar.Text = "Apagar";
+            this.BtnApagar.Click += new System.EventHandler(this.BtnApagar_Click);
             // 
             // SerialPort1
             // 
@@ -144,6 +145,7 @@
             this.Name = "Form1";
             this.Text = "Green Guardian MK2 ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.NavBar.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);

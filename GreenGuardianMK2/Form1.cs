@@ -19,13 +19,22 @@ namespace GreenGuardianMK2
 
         private void BtnEncender_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                SerialPort1.WriteLine("$On");
+            }
+            catch(Exception error) 
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
+                SerialPort1.PortName = "COM4";
                 SerialPort1.Open();
                 MessageBox.Show("ARDUINO CONECTADA");
             }
@@ -34,6 +43,35 @@ namespace GreenGuardianMK2
                 MessageBox.Show(error.Message);
             }
             
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (SerialPort1.IsOpen) 
+            {
+                try
+                {
+                    SerialPort1.Close();
+                }
+                catch (Exception error) 
+                {
+                    MessageBox.Show(error.Message);
+                }
+                
+            }
+            
+        }
+
+        private void BtnApagar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SerialPort1.WriteLine("$Off");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }
