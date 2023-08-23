@@ -16,5 +16,24 @@ namespace GreenGuardianMK2
         {
             InitializeComponent();
         }
+
+        private void BtnEncender_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                SerialPort1.Open();
+                MessageBox.Show("ARDUINO CONECTADA");
+            }
+            catch(Exception error) 
+            {
+                MessageBox.Show(error.Message);
+            }
+            
+        }
     }
 }
