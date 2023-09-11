@@ -101,6 +101,7 @@
             this.CBPortList.Name = "CBPortList";
             this.CBPortList.Size = new System.Drawing.Size(151, 35);
             this.CBPortList.TabIndex = 7;
+            this.CBPortList.SelectedIndexChanged += new System.EventHandler(this.CBPortList_SelectedIndexChanged);
             // 
             // SuccessLabel
             // 

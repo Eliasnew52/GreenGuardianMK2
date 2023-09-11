@@ -122,5 +122,10 @@ namespace GreenGuardianMK2
                 MessageBox.Show(error.Message);
             }
         }
+
+        private void CBPortList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -45,10 +45,14 @@
             this.BtnDesconectar = new Guna.UI2.WinForms.Guna2Button();
             this.BtnConectar = new Guna.UI2.WinForms.Guna2Button();
             this.StatusLabel = new System.Windows.Forms.Label();
+            this.LED_Panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.BtnLED_On = new Guna.UI2.WinForms.Guna2Button();
+            this.BtnLED_Off = new Guna.UI2.WinForms.Guna2Button();
             this.NavBar.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.LED_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // NavBar
@@ -119,14 +123,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 155);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(293, 900);
+            this.panel1.Size = new System.Drawing.Size(262, 900);
             this.panel1.TabIndex = 2;
             // 
             // CBSerialPorts
             // 
             this.CBSerialPorts.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBSerialPorts.FormattingEnabled = true;
-            this.CBSerialPorts.Location = new System.Drawing.Point(31, 98);
+            this.CBSerialPorts.Location = new System.Drawing.Point(12, 98);
             this.CBSerialPorts.Name = "CBSerialPorts";
             this.CBSerialPorts.Size = new System.Drawing.Size(235, 53);
             this.CBSerialPorts.TabIndex = 0;
@@ -136,7 +140,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(51, 38);
+            this.label3.Location = new System.Drawing.Point(42, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 34);
             this.label3.TabIndex = 6;
@@ -145,13 +149,14 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 14.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 13.7F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(12, 281);
+            this.label4.Location = new System.Drawing.Point(5, 275);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(264, 30);
+            this.label4.Size = new System.Drawing.Size(254, 29);
             this.label4.TabIndex = 7;
             this.label4.Text = "Estado del Dispositivo";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnDesconectar
             // 
@@ -164,13 +169,14 @@
             this.BtnDesconectar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.BtnDesconectar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.BtnDesconectar.FillColor = System.Drawing.Color.Firebrick;
-            this.BtnDesconectar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDesconectar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.BtnDesconectar.ForeColor = System.Drawing.Color.White;
-            this.BtnDesconectar.Location = new System.Drawing.Point(40, 539);
+            this.BtnDesconectar.Location = new System.Drawing.Point(31, 512);
             this.BtnDesconectar.Name = "BtnDesconectar";
             this.BtnDesconectar.Size = new System.Drawing.Size(194, 73);
             this.BtnDesconectar.TabIndex = 8;
             this.BtnDesconectar.Text = "Desconectar";
+            this.BtnDesconectar.Click += new System.EventHandler(this.BtnDesconectar_Click);
             // 
             // BtnConectar
             // 
@@ -183,24 +189,69 @@
             this.BtnConectar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.BtnConectar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.BtnConectar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.BtnConectar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnConectar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.BtnConectar.ForeColor = System.Drawing.Color.White;
-            this.BtnConectar.Location = new System.Drawing.Point(40, 444);
+            this.BtnConectar.Location = new System.Drawing.Point(31, 417);
             this.BtnConectar.Name = "BtnConectar";
             this.BtnConectar.Size = new System.Drawing.Size(194, 73);
             this.BtnConectar.TabIndex = 9;
             this.BtnConectar.Text = "Conectar";
+            this.BtnConectar.Click += new System.EventHandler(this.BtnConectar_Click);
             // 
             // StatusLabel
             // 
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.StatusLabel.Location = new System.Drawing.Point(51, 345);
+            this.StatusLabel.Location = new System.Drawing.Point(42, 323);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(164, 31);
             this.StatusLabel.TabIndex = 10;
             this.StatusLabel.Text = "Desconectado";
+            // 
+            // LED_Panel
+            // 
+            this.LED_Panel.BackColor = System.Drawing.Color.Transparent;
+            this.LED_Panel.BorderColor = System.Drawing.Color.White;
+            this.LED_Panel.BorderRadius = 10;
+            this.LED_Panel.BorderThickness = 4;
+            this.LED_Panel.Controls.Add(this.BtnLED_Off);
+            this.LED_Panel.Controls.Add(this.BtnLED_On);
+            this.LED_Panel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LED_Panel.Location = new System.Drawing.Point(284, 183);
+            this.LED_Panel.Name = "LED_Panel";
+            this.LED_Panel.Size = new System.Drawing.Size(473, 311);
+            this.LED_Panel.TabIndex = 3;
+            // 
+            // BtnLED_On
+            // 
+            this.BtnLED_On.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnLED_On.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnLED_On.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnLED_On.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnLED_On.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnLED_On.ForeColor = System.Drawing.Color.White;
+            this.BtnLED_On.Location = new System.Drawing.Point(35, 218);
+            this.BtnLED_On.Name = "BtnLED_On";
+            this.BtnLED_On.Size = new System.Drawing.Size(180, 45);
+            this.BtnLED_On.TabIndex = 0;
+            this.BtnLED_On.Text = "Encender";
+            this.BtnLED_On.Click += new System.EventHandler(this.BtnLED_On_Click);
+            // 
+            // BtnLED_Off
+            // 
+            this.BtnLED_Off.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnLED_Off.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnLED_Off.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnLED_Off.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnLED_Off.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnLED_Off.ForeColor = System.Drawing.Color.White;
+            this.BtnLED_Off.Location = new System.Drawing.Point(253, 218);
+            this.BtnLED_Off.Name = "BtnLED_Off";
+            this.BtnLED_Off.Size = new System.Drawing.Size(180, 45);
+            this.BtnLED_Off.TabIndex = 1;
+            this.BtnLED_Off.Text = "Apagar";
+            this.BtnLED_Off.Click += new System.EventHandler(this.BtnLED_Off_Click);
             // 
             // Form1
             // 
@@ -208,6 +259,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.LED_Panel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.NavBar);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -224,6 +276,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.LED_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -245,6 +298,9 @@
         private System.Windows.Forms.ComboBox CBSerialPorts;
         private Guna.UI2.WinForms.Guna2Button BtnConectar;
         private System.Windows.Forms.Label StatusLabel;
+        private Guna.UI2.WinForms.Guna2Panel LED_Panel;
+        private Guna.UI2.WinForms.Guna2Button BtnLED_Off;
+        private Guna.UI2.WinForms.Guna2Button BtnLED_On;
     }
 }
 
