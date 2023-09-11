@@ -51,13 +51,13 @@ namespace GreenGuardianMK2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+           PortCheck();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-           
-           
+
+            PortCheck();
         }
 
         private void BtnApagar_Click(object sender, EventArgs e)
@@ -131,5 +131,30 @@ namespace GreenGuardianMK2
         {
             CommandInput("$Off");
         }
+
+        private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            //Aqui van las Lecturas en Tiempo Real
+            while(SerialPort1.IsOpen && SerialPort1.BytesToRead > 0) 
+            {
+                string SerialData = SerialPort1.ReadLine();
+                try
+                {
+                    /*if(SerialData.GetType()==typeof(string))
+                    {
+                        
+                    }
+                    */
+                    int Values = Convert.ToInt32(SerialData);
+                    Data_Chart.Invoke((MethodInvoker)(() => Data_Chart.Series["Humedad"].Points.AddY(Values)));
+                }
+                catch
+                {
+                    continue;
+                }
+                
+            }
+        }
     }
+
 }

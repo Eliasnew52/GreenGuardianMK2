@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.NavBar = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,11 +51,15 @@
             this.LED_Panel = new Guna.UI2.WinForms.Guna2Panel();
             this.BtnLED_On = new Guna.UI2.WinForms.Guna2Button();
             this.BtnLED_Off = new Guna.UI2.WinForms.Guna2Button();
+            this.ChartPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.Data_Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.NavBar.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.LED_Panel.SuspendLayout();
+            this.ChartPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Chart)).BeginInit();
             this.SuspendLayout();
             // 
             // NavBar
@@ -125,6 +132,10 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(262, 900);
             this.panel1.TabIndex = 2;
+            // 
+            // SerialPort1
+            // 
+            this.SerialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
             // 
             // CBSerialPorts
             // 
@@ -218,7 +229,7 @@
             this.LED_Panel.Controls.Add(this.BtnLED_Off);
             this.LED_Panel.Controls.Add(this.BtnLED_On);
             this.LED_Panel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LED_Panel.Location = new System.Drawing.Point(284, 183);
+            this.LED_Panel.Location = new System.Drawing.Point(284, 601);
             this.LED_Panel.Name = "LED_Panel";
             this.LED_Panel.Size = new System.Drawing.Size(473, 311);
             this.LED_Panel.TabIndex = 3;
@@ -253,12 +264,47 @@
             this.BtnLED_Off.Text = "Apagar";
             this.BtnLED_Off.Click += new System.EventHandler(this.BtnLED_Off_Click);
             // 
+            // ChartPanel
+            // 
+            this.ChartPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ChartPanel.BorderColor = System.Drawing.Color.White;
+            this.ChartPanel.BorderRadius = 10;
+            this.ChartPanel.BorderThickness = 4;
+            this.ChartPanel.Controls.Add(this.Data_Chart);
+            this.ChartPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ChartPanel.Location = new System.Drawing.Point(284, 180);
+            this.ChartPanel.Name = "ChartPanel";
+            this.ChartPanel.Size = new System.Drawing.Size(722, 397);
+            this.ChartPanel.TabIndex = 4;
+            // 
+            // Data_Chart
+            // 
+            this.Data_Chart.BackColor = System.Drawing.Color.DarkGray;
+            chartArea2.Name = "ChartArea1";
+            this.Data_Chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.Data_Chart.Legends.Add(legend2);
+            this.Data_Chart.Location = new System.Drawing.Point(20, 15);
+            this.Data_Chart.Name = "Data_Chart";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Blue;
+            series2.LabelBackColor = System.Drawing.Color.Silver;
+            series2.LabelBorderColor = System.Drawing.Color.Silver;
+            series2.Legend = "Legend1";
+            series2.Name = "Humedad";
+            this.Data_Chart.Series.Add(series2);
+            this.Data_Chart.Size = new System.Drawing.Size(672, 361);
+            this.Data_Chart.TabIndex = 0;
+            this.Data_Chart.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.ChartPanel);
             this.Controls.Add(this.LED_Panel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.NavBar);
@@ -277,6 +323,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.LED_Panel.ResumeLayout(false);
+            this.ChartPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Data_Chart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -301,6 +349,8 @@
         private Guna.UI2.WinForms.Guna2Panel LED_Panel;
         private Guna.UI2.WinForms.Guna2Button BtnLED_Off;
         private Guna.UI2.WinForms.Guna2Button BtnLED_On;
+        private Guna.UI2.WinForms.Guna2Panel ChartPanel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Data_Chart;
     }
 }
 
