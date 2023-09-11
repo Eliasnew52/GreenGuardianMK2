@@ -39,9 +39,9 @@
             this.BtnDisconnect = new Guna.UI2.WinForms.Guna2Button();
             this.BtnConnect = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.BtnOn = new Guna.UI2.WinForms.Guna2Button();
             this.BtnOff = new Guna.UI2.WinForms.Guna2Button();
+            this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +82,7 @@
             this.guna2GroupBox1.Controls.Add(this.label2);
             this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.White;
             this.guna2GroupBox1.CustomBorderThickness = new System.Windows.Forms.Padding(7, 45, 7, 7);
-            this.guna2GroupBox1.FillColor = System.Drawing.Color.MediumTurquoise;
+            this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(159)))), ((int)(((byte)(182)))));
             this.guna2GroupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.guna2GroupBox1.Location = new System.Drawing.Point(12, 143);
@@ -193,10 +193,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Puerto COM:";
             // 
-            // SerialPort1
-            // 
-            this.SerialPort1.PortName = "COM4";
-            // 
             // BtnOn
             // 
             this.BtnOn.BackColor = System.Drawing.Color.Transparent;
@@ -241,7 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Aquamarine;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(1800, 1000);
             this.ControlBox = false;
             this.Controls.Add(this.BtnOff);
@@ -271,9 +267,9 @@
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2CircleProgressBar PBPort;
         private System.Windows.Forms.Label SuccessLabel;
-        private System.IO.Ports.SerialPort SerialPort1;
         private System.Windows.Forms.ComboBox CBPortList;
         private Guna.UI2.WinForms.Guna2Button BtnOn;
         private Guna.UI2.WinForms.Guna2Button BtnOff;
+        private System.IO.Ports.SerialPort SerialPort1;
     }
 }

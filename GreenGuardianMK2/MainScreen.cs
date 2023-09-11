@@ -16,9 +16,12 @@ namespace GreenGuardianMK2
     public partial class MainScreen : Form
     {
         
+        
+       
         public MainScreen()
         {
             InitializeComponent();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
