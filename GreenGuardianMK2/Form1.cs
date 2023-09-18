@@ -13,13 +13,16 @@ namespace GreenGuardianMK2
 {
     public partial class Form1 : Form
     {
+        
         /* Instancias de los Formularios*/
         
       
         public Form1()
         {
+            
             InitializeComponent();
             PortCheck();
+            Size = new Size(Size.Width, Size.Height);   
             string[] PortList = SerialPort.GetPortNames();
             CBSerialPorts.Items.AddRange(PortList);
         }
@@ -146,7 +149,9 @@ namespace GreenGuardianMK2
                     }
                     */
                     int Values = Convert.ToInt32(SerialData);
-                    Data_Chart.Invoke((MethodInvoker)(() => Data_Chart.Series["Humedad"].Points.AddY(Values)));
+                    Data_Chart_Humedad.Invoke((MethodInvoker)(() => Data_Chart_Humedad.Series["Humedad"].Points.AddY(Values)));
+
+                    /*Data_Chart_Temperatura.Invoke((MethodInvoker)(() => Data_Chart_Temperatura.Series["Temperatura"].Points.AddY(Values)));*/
                 }
                 catch
                 {
@@ -154,6 +159,21 @@ namespace GreenGuardianMK2
                 }
                 
             }
+        }
+
+        private void ChartPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BtnShoot_Click(object sender, EventArgs e)
+        {
+            CommandInput("$Shoot");
+        }
+
+        private void BtnShootOff_Click(object sender, EventArgs e)
+        {
+            CommandInput("$ShootOff");
         }
     }
 
