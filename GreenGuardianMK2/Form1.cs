@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using Newtonsoft.Json;
 
 namespace GreenGuardianMK2
 {
     public partial class Form1 : Form
     {
-        
-        /* Instancias de los Formularios*/
-        
-      
+
+        /* ID del Dispositivo Conectado*/
+        string Device_ID;
+        /*Instancia de la DB*/
+        DataSender DBInput = new DataSender();
+
         public Form1()
         {
             
@@ -26,6 +29,12 @@ namespace GreenGuardianMK2
             string[] PortList = SerialPort.GetPortNames();
             CBSerialPorts.Items.AddRange(PortList);
         }
+        public class SensorData
+        {
+            public int Temperatura { get; set; }
+            public int Humedad { get; set; }
+        }
+
 
         private void BtnEncender_Click(object sender, EventArgs e)
         {
@@ -59,7 +68,7 @@ namespace GreenGuardianMK2
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            SerialPort1.Close();
             PortCheck();
         }
 
@@ -90,7 +99,8 @@ namespace GreenGuardianMK2
                 SerialPort1.PortName = CBSerialPorts.Text;
                 SerialPort1.Open();
                 PortCheck();
-                
+                SerialPort1.WriteLine("$GetDeviceID");
+
             }
             catch (Exception error)
             {
@@ -105,6 +115,8 @@ namespace GreenGuardianMK2
 
                 SerialPort1.Close();
                 PortCheck();
+                TxtDevice_ID.Text = ("Desconectado");
+                TxtDevice_ID.ForeColor = Color.DarkGray;
                
             }
             catch (Exception error)
@@ -137,27 +149,60 @@ namespace GreenGuardianMK2
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //Aqui van las Lecturas en Tiempo Real
-            while(SerialPort1.IsOpen && SerialPort1.BytesToRead > 0) 
+            while (SerialPort1.IsOpen && SerialPort1.BytesToRead > 0)
             {
-                string SerialData = SerialPort1.ReadLine();
-                try
-                {
-                    /*if(SerialData.GetType()==typeof(string))
-                    {
-                        
-                    }
-                    */
-                    int Values = Convert.ToInt32(SerialData);
-                    Data_Chart_Humedad.Invoke((MethodInvoker)(() => Data_Chart_Humedad.Series["Humedad"].Points.AddY(Values)));
+                // Lee el JSON desde el puerto serie
+                string serialData = SerialPort1.ReadLine();
 
-                    /*Data_Chart_Temperatura.Invoke((MethodInvoker)(() => Data_Chart_Temperatura.Series["Temperatura"].Points.AddY(Values)));*/
-                }
-                catch
+                if (serialData.StartsWith("DeviceID:"))
                 {
-                    continue;
+                    try
+                    {
+                        // Extrae y almacena el DEVICE ID
+                        Device_ID = serialData.Substring(9); // 9 es la longitud de "DeviceID:"
+
+                        // Actualiza algún control en tu HMI para mostrar el DEVICE ID
+                        // Por ejemplo, si tienes un TextBox llamado txtDeviceID:
+                        TxtDevice_ID.Invoke((MethodInvoker)(() => TxtDevice_ID.Text = Device_ID.ToString()));
+                        TxtDevice_ID.ForeColor = Color.Green;
+
+                        // También puedes detener la recepción de datos si ya tienes el DEVICE ID
+                        //SerialPort1.DataReceived -= SerialPort1_DataReceived;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error Obteniendo el ID");
+                    }
                 }
-                
+                else
+                {
+                    try
+                    {
+                        // Deserializa el JSON en un objeto C#
+                        SensorData sensorData = JsonConvert.DeserializeObject<SensorData>(serialData);
+
+                        // Accede a los valores del sensor desde el objeto deserializado
+                        int temperatura = sensorData.Temperatura;
+                        int humedad = sensorData.Humedad;
+                        string JSONSensorData = JsonConvert.SerializeObject(sensorData);
+                        try
+                        {
+                            Boolean Band = DBInput.STATS_UPDATE(int.Parse(Device_ID),JSONSensorData);                       }
+                        catch
+                        {
+                            Console.WriteLine("Error al hacer Insercion a la DB");
+                        }
+                        
+
+                        // Actualiza la interfaz gráfica con los valores leídos
+                        Data_Chart_Humedad.Invoke((MethodInvoker)(() => Data_Chart_Humedad.Series["Humedad"].Points.AddY(humedad)));
+                        //Data_Chart_Temperatura.Invoke((MethodInvoker)(() => Data_Chart_Temperatura.Series["Temperatura"].Points.AddY(temperatura)));
+                    }
+                    catch (JsonException ex)
+                    {
+                        continue;
+                    }
+                }
             }
         }
 
@@ -174,6 +219,11 @@ namespace GreenGuardianMK2
         private void BtnShootOff_Click(object sender, EventArgs e)
         {
             CommandInput("$ShootOff");
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

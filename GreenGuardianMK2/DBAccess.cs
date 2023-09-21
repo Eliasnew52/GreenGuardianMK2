@@ -9,7 +9,7 @@ namespace GreenGuardianMK2
 {
     public class DBAccess
     {
-        public string DB_URL = "SQL";
+        public string DB_URL = "Data Source=(local);Initial Catalog=TEST;Integrated Security=True";
         public SqlConnection Conexion;
         public SqlCommand Query;
 
